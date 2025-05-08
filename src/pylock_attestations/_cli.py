@@ -12,9 +12,9 @@ from typing import Any, NoReturn
 import requests
 import tomli_w
 from packaging import pylock
-from packaging.utils import parse_sdist_filename, parse_wheel_filename
+from packaging.utils import Version, parse_sdist_filename, parse_wheel_filename
 from pydantic import ValidationError
-from pypi_attestations import Provenance
+from pypi_attestations import Distribution, Provenance
 
 from pylock_attestations import __version__
 
@@ -29,23 +29,7 @@ def _die(message: str) -> NoReturn:
     raise SystemExit(1)
 
 
-def _get_attestation_identities(package: pylock.Package) -> Sequence[Mapping[str, Any]] | None:
-    """Use PyPI's integrity API to get a package's attestation identities."""
-    filename, name, version = None, None, None
-
-    if package.sdist is not None and package.sdist.url is not None:
-        url = package.sdist.url
-        filename = url.split("/")[-1]
-        name, version = parse_sdist_filename(filename)
-    elif package.wheels is not None:
-        filenames = [w.url.split("/")[-1] for w in package.wheels if w.url is not None]
-        if filenames:
-            filename = filenames[0]
-            name, version, _, _ = parse_wheel_filename(filenames[0])
-
-    if name is None or version is None or filename is None:
-        return None
-
+def _download_provenance(name: str, version: Version, filename: str) -> Provenance | None:
     provenance_url = f"https://pypi.org/integrity/{name}/{version}/{filename}/provenance"
     response = requests.get(provenance_url, timeout=5)
 
@@ -59,12 +43,43 @@ def _get_attestation_identities(package: pylock.Package) -> Sequence[Mapping[str
         return None
 
     try:
-        provenance = Provenance.model_validate_json(response.text)
+        return Provenance.model_validate_json(response.text)
     except ValidationError:
         _logger.warning(
             "Unexpected error while validating provenance downloaded from %s", provenance_url
         )
         return None
+
+
+def _get_attestation_identities(package: pylock.Package) -> Sequence[Mapping[str, Any]] | None:
+    """Use PyPI's integrity API to get a package's attestation identities."""
+    filename, name, version, digest = None, None, None, None
+
+    if package.sdist is not None and package.sdist.url is not None:
+        url = package.sdist.url
+        filename = url.split("/")[-1]
+        name, version = parse_sdist_filename(filename)
+        digest = package.sdist.hashes.get("sha256", None)
+    elif package.wheels is not None:
+        wheel_tuples = [(w.url, w.hashes) for w in package.wheels if w.url is not None]
+        if wheel_tuples:
+            url, digests = wheel_tuples[0]
+            filename = url.split("/")[-1]
+            name, version, _, _ = parse_wheel_filename(filename)
+            digest = digests.get("sha256", None)
+
+    if name is None or version is None or filename is None:
+        return None
+
+    provenance = _download_provenance(name=name, version=version, filename=filename)
+    if provenance is None:
+        return None
+
+    # Verify the downloaded provenance against the digest in the lockfile
+    if digest is not None:
+        for bundle in provenance.attestation_bundles:
+            for attestation in bundle.attestations:
+                attestation.verify(bundle.publisher, Distribution(name=filename, digest=digest))
 
     return [bundle.publisher.dict(exclude_none=True) for bundle in provenance.attestation_bundles]
 
