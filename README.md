@@ -6,7 +6,7 @@
 [![Packaging status](https://repology.org/badge/tiny-repos/python:pylock-attestations.svg)](https://repology.org/project/python:pylock-attestations/versions)
 <!--- BADGES: END --->
 
-CLI tool to add attestation identities to `pylock.toml` files
+CLI tool to add attestation identities to a `pylock.toml` file
 
 ## License
 ```

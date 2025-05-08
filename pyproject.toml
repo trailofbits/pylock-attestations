@@ -1,7 +1,7 @@
 [project]
 name = "pylock-attestations"
 dynamic = ["version"]
-description = "CLI tool to add attestation identities to pylock.toml files"
+description = "CLI tool to add attestation identities to a pylock.toml file"
 readme = "README.md"
 license-files = ["LICENSE"]
 license = "Apache-2.0"
@@ -12,8 +12,12 @@ authors = [
 classifiers = [
     "Programming Language :: Python :: 3",
 ]
-dependencies = []
-requires-python = ">=3.9"
+dependencies = [
+    "packaging @ git+https://github.com/sbidoul/packaging.git@5ab8ae950dfd1fc1edb4ad8afa70bea8de9e4ce5",
+    "pypi-attestations==0.0.25",
+    "tomli-w>=1.2.0",
+]
+requires-python = ">=3.13"
 
 [tool.setuptools.dynamic]
 version = { attr = "pylock_attestations.__version__" }
@@ -90,3 +94,6 @@ ignore = ["D203", "D213", "COM812", "ISC001"]
 exclude = ["env", "test", "src/pylock_attestations/_cli.py"]
 ignore-semiprivate = true
 fail-under = 100
+
+[tool.uv]
+prerelease = "allow"
