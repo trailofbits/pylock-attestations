@@ -8,6 +8,31 @@
 
 CLI tool to add attestation identities to a `pylock.toml` file
 
+## Installation
+
+Install using `uv` or `pipx`
+```sh
+uv tool install pylock-attestations
+```
+
+## Usage
+
+Run the `pylock-attestations` command inside a project folder containing
+a `pylock.toml` file to update it in-place:
+
+```sh
+cd my_project/
+pylock-attestations
+```
+
+
+Alternatively, specifying the input and output files:
+
+```sh
+cd my_project
+pylock-attestations -i pylock.old.toml -o pylock.toml
+```
+
 ## License
 ```
 Copyright 2025 Trail of Bits
