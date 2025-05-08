@@ -6,13 +6,17 @@
 [![Packaging status](https://repology.org/badge/tiny-repos/python:pylock-attestations.svg)](https://repology.org/project/python:pylock-attestations/versions)
 <!--- BADGES: END --->
 
-CLI tool to add attestation identities to a `pylock.toml` file
+CLI tool to add attestation identities to a `pylock.toml` file.
 
 ## Installation
 
-Install using `uv` or `pipx`
+Install using `uv` or `pipx`:
 ```sh
+# with uv:
 uv tool install pylock-attestations
+
+# with pipx:
+pipx install pylock-attestations
 ```
 
 ## Usage
@@ -22,15 +26,17 @@ a `pylock.toml` file to update it in-place:
 
 ```sh
 cd my_project/
+
 pylock-attestations
 ```
 
 
-Alternatively, specifying the input and output files:
+You can also specify the input and output files:
 
 ```sh
-cd my_project
-pylock-attestations -i pylock.old.toml -o pylock.toml
+cd my_project/
+
+pylock-attestations -i pylock.old.toml -o pylock.new.toml
 ```
 
 ## License
