@@ -11,12 +11,12 @@ from typing import Any, NoReturn
 
 import requests
 import tomli_w
-from packaging import pylock
 from packaging.utils import Version, parse_sdist_filename, parse_wheel_filename
 from pydantic import ValidationError
 from pypi_attestations import Distribution, Provenance
 
 from pylock_attestations import __version__
+from pylock_attestations._vendor.packaging import pylock
 
 logging.basicConfig(format="%(message)s", datefmt="[%X]", handlers=[logging.StreamHandler()])
 _logger = logging.getLogger(__name__)
@@ -88,7 +88,7 @@ def _update_pylock_file(input_file: Path, output_file: Path) -> None:
     try:
         with input_file.open("rb") as f:
             pylock_dict = tomllib.load(f)
-            pylock_data = pylock.from_dict(pylock_dict)
+            pylock_data = pylock.Pylock.from_dict(pylock_dict)
     except tomllib.TOMLDecodeError as e:
         _die(f"Invalid TOML in file '{input_file}': {e}")
     except pylock.PylockValidationError as e:
