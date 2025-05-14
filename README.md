@@ -16,7 +16,7 @@ CLI tool to add attestation identities to a `pylock.toml` file.
 Install using `uv` or `pipx`:
 ```sh
 # with uv:
-uv tool install pylock-attestations
+uv tool install pylock-attestations --prerelease=allow
 
 # with pipx:
 pipx install pylock-attestations
