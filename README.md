@@ -8,6 +8,9 @@
 
 CLI tool to add attestation identities to a `pylock.toml` file.
 
+> [!IMPORTANT]
+> This CLI is currently in alpha and not ready for production use.
+
 ## Installation
 
 Install using `uv` or `pipx`:

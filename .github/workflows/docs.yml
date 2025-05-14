@@ -1,5 +1,6 @@
 name: Deploy Documentation
 
+permissions: {}
 on:
   push:
     branches:
