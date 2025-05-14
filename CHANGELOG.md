@@ -7,11 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.0.1a2] - 2025-05-14
+
+### Changed
+
+- Vendor `packaging` dependency with changes for `pylock.toml` support.
+
 ## [0.0.1a1] - 2025-05-14
 
 ### Added
 
 - Initial implementation
 
-[Unreleased]: https://github.com/trailofbits/pylock-attestations/compare/v0.0.1a1...HEAD
+[Unreleased]: https://github.com/trailofbits/pylock-attestations/compare/v0.0.1a2...HEAD
+[0.0.1a1]: https://github.com/trailofbits/pylock-attestations/releases/tag/v0.0.1a2
 [0.0.1a1]: https://github.com/trailofbits/pylock-attestations/releases/tag/v0.0.1a1
