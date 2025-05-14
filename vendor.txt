@@ -1,0 +1,1 @@
+packaging @ git+https://github.com/sbidoul/packaging.git@766e088664ef99faf3a067a071a6489b8cca6e1e
