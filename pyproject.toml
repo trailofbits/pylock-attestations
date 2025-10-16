@@ -13,7 +13,7 @@ classifiers = [
     "Programming Language :: Python :: 3",
 ]
 dependencies = [
-    "pypi-attestations==0.0.27",
+    "pypi-attestations==0.0.28",
     "tomli-w>=1.2.0",
 ]
 requires-python = ">=3.13"
