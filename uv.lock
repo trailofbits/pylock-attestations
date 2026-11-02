@@ -1011,15 +1011,6 @@ wheels = [
 ]
 
 [[package]]
-name = "pyasn1"
-version = "0.6.4"
-source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/a4/9a/23310166d960def5897e91fe20e5b724601b02a22e84ba1f94232c0b7f67/pyasn1-0.6.4.tar.gz", hash = "sha256:9c447d8431c947fe4c8febc4ed9e760bc29011a5b01e5c74b67025bd9fb8ce81", size = 151262, upload-time = "2026-07-09T01:12:33.988Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/9a/3b/6163796d69c3977d1e4287bea4a6979161cbbdd170ebb430511e8e1999ce/pyasn1-0.6.4-py3-none-any.whl", hash = "sha256:deda9277cfd454080ec40b207fb6df82206a3a2688735233cdcd8d3d565f088b", size = 84410, upload-time = "2026-07-09T01:12:32.92Z" },
-]
-
-[[package]]
 name = "pycparser"
 version = "3.12"
 source = { registry = "https://pypi.org/simple" }
@@ -1204,7 +1195,7 @@ requires-dist = [
     { name = "pdoc", marker = "extra == 'doc'" },
     { name = "pretend", marker = "extra == 'test'" },
     { name = "pylock-attestations", extras = ["doc", "lint", "test"], marker = "extra == 'dev'" },
-    { name = "pypi-attestations", specifier = "==0.0.30" },
+    { name = "pypi-attestations", specifier = "==0.0.31" },
     { name = "pytest", marker = "extra == 'test'" },
     { name = "pytest-cov", marker = "extra == 'test'" },
     { name = "ruff", marker = "extra == 'lint'", specifier = ">=0.11.8,<0.18.0" },
@@ -1218,21 +1209,20 @@ provides-extras = ["doc", "test", "lint", "dev"]
 
 [[package]]
 name = "pypi-attestations"
-version = "0.0.30"
+version = "0.0.31"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "cryptography" },
     { name = "packaging" },
-    { name = "pyasn1" },
     { name = "pydantic" },
     { name = "requests" },
     { name = "rfc3986" },
     { name = "sigstore" },
     { name = "sigstore-models" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/97/1e/eb8a0233cdcaf01acb18076ac8b8a057714177b3717baf26b78a11b8d929/pypi_attestations-0.0.30.tar.gz", hash = "sha256:14ff13c76bbef02a483c2b77532da02bfd746b5141b881f355e06b9807434423", size = 139108, upload-time = "2026-07-28T14:08:35.011Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/b2/e2/61dacf2a7ae4cc5a3671f528a8e1d0a84b3ed032c1da5ebb3297f41d58b3/pypi_attestations-0.0.31.tar.gz", hash = "sha256:5a2473aca7d7f65caf2c3a985691c5cf9264a97fa68c98fbae6e96320bcc7c9a", size = 140027, upload-time = "2026-11-02T20:14:18.648Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/5f/24/e59078318b5e2bca59be5a21957d70e082e6eb4f478adffe373f3b74daf4/pypi_attestations-0.0.30-py3-none-any.whl", hash = "sha256:b3a9c53f6cb89e5e7b5b70e6cfca97cfc66008c1ed54087355e06e40071cef21", size = 23015, upload-time = "2026-07-28T14:08:33.453Z" },
+    { url = "https://files.pythonhosted.org/packages/4f/86/4dc8763dd3c29468417c7f16ca8758d51271419445d56809c860627697ee/pypi_attestations-0.0.31-py3-none-any.whl", hash = "sha256:c022f7bc771545463fdcbb019160b86b87a6048c9a9edb7d541824593d64a1c8", size = 22937, upload-time = "2026-11-02T20:14:17.241Z" },
 ]
 
 [[package]]
